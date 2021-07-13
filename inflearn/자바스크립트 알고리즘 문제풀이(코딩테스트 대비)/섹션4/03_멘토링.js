@@ -40,7 +40,7 @@ function solution(arr) {
         const m2 = arr[k].indexOf(j);
         if (m1 < m2) count++;
       }
-      if (count === 3) answer.push([i, j]);
+      if (count === arr.length) answer.push([i, j]);
     }
   }
 
