@@ -9,11 +9,7 @@ function solution(n, arr1, arr2) {
   for (let i = 0; i < n; i++) {
     let temp = "";
     for (let j = 0; j < n; j++) {
-      if (+_arr1[i][j] > 0 || +_arr2[i][j] > 0) {
-        temp += "#";
-      } else {
-        temp += " ";
-      }
+      temp += +_arr1[i][j] > 0 || +_arr2[i][j] > 0 ? "#" : " ";
     }
     answer[i] = temp;
   }
@@ -23,16 +19,7 @@ function solution(n, arr1, arr2) {
 
 function makeBinArr(n, num) {
   const bin = num.toString(2);
-  if (bin.length < n) {
-    const diff = n - bin.length;
-    let temp = "";
-    for (let i = 0; i < diff; i++) {
-      temp += "0";
-    }
-    const _bin = bin.split("");
-    _bin.splice(0, 0, temp);
-    return _bin.join("");
-  }
+  if (bin.length < n) return bin.padStart(n, 0);
   return bin;
 }
 
