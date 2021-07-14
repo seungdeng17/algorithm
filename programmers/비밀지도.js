@@ -24,14 +24,14 @@ function makeBinArr(n, num) {
 }
 
 function getBin(num) {
-  let bin = [];
+  const binArr = [];
   while(!(num === 0 || num === 1)) {
       const b = num % 2;
-      bin.unshift(b);
+      binArr.unshift(b);
       num = Math.floor(num / 2); 
   }
-  bin.unshift(num);
-  return bin.join('');
+  binArr.unshift(num);
+  return binArr.join('');
 }
 
 console.log(solution(5, [9, 20, 28, 18, 11], [30, 1, 21, 17, 28]));
