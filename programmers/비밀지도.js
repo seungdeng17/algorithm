@@ -18,9 +18,20 @@ function solution(n, arr1, arr2) {
 }
 
 function makeBinArr(n, num) {
-  const bin = num.toString(2);
+  const bin = getBin(num);
   if (bin.length < n) return bin.padStart(n, 0);
   return bin;
+}
+
+function getBin(num) {
+  let bin = [];
+  while(!(num === 0 || num === 1)) {
+      const b = num % 2;
+      bin.unshift(b);
+      num = Math.floor(num / 2); 
+  }
+  bin.unshift(num);
+  return bin.join('');
 }
 
 console.log(solution(5, [9, 20, 28, 18, 11], [30, 1, 21, 17, 28]));
