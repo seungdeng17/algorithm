@@ -1,22 +1,40 @@
+// function solution(arr, target) {
+//   let answer = [];
+//   let p1 = 0;
+//   let p2 = 0;
+//   let sum = 0;
+
+//   while (p2 < arr.length) {
+//     if (sum === target) {
+//       answer.push(arr.slice(p1, p2));
+//       sum -= arr[p1];
+//       p1++;
+//     }
+//     if (sum > target) {
+//       sum -= arr[p1];
+//       p1++;
+//     }
+//     if (sum < target) {
+//       sum += arr[p2];
+//       p2++;
+//     }
+//   }
+
+//   return answer;
+// }
+
 function solution(arr, target) {
-  let answer = [];
+  const answer = [];
   let p1 = 0;
   let p2 = 0;
   let sum = 0;
 
   while (p2 < arr.length) {
-    if (sum === target) {
+    if (sum < target) sum += arr[p2++];
+    else if (sum > target) sum -= arr[p1++];
+    else {
       answer.push(arr.slice(p1, p2));
-      sum -= arr[p1];
-      p1++;
-    }
-    if (sum > target) {
-      sum -= arr[p1];
-      p1++;
-    }
-    if (sum < target) {
-      sum += arr[p2];
-      p2++;
+      sum += arr[p2++];
     }
   }
 
