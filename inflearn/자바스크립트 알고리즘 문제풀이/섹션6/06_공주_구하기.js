@@ -15,6 +15,17 @@
 //   return queue[0];
 // }
 
+// function solution(n, m) {
+//   const queue = Array.from({ length: n }, (_, i) => i + 1);
+
+//   while (queue.length !== 1) {
+//     for (let i = 0; i < m - 1; i++) queue.push(queue.shift());
+//     queue.shift();
+//   }
+
+//   return queue[0];
+// }
+
 function solution(n, m) {
   const queue = Array.from({ length: n }, (_, i) => i + 1);
 
