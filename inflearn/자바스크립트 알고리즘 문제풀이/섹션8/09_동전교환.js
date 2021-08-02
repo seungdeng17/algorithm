@@ -3,7 +3,7 @@ function solution(arr, money) {
   const tmp = [];
 
   function DFS(i, sum) {
-    if (money < sum) return;
+    if (money < sum || answer < i) return;
     if (money === sum) {
       answer = Math.min(answer, tmp.length);
       return;
