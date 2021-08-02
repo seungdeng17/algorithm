@@ -1,5 +1,5 @@
 function solution(n, m) {
-  let tmp = [];
+  const tmp = [];
   function DFS(i) {
     if (i >= m) {
       console.log(tmp);
