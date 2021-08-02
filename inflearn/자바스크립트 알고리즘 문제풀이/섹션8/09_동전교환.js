@@ -11,7 +11,7 @@ function solution(arr, money) {
 
     for (let j = 0; j < arr.length; j++) {
       tmp.push(arr[j]);
-      DFS(i + j, sum + arr[j]);
+      DFS(i + 1, sum + arr[j]);
       tmp.pop();
     }
   }
