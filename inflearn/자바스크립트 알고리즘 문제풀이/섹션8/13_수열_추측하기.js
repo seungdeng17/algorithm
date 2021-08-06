@@ -2,12 +2,12 @@
 // //   let answer;
 
 // //   const b = [];
-// //   const metrix = Array.from({ length: n }, () => Array(n).fill(0));
+// //   const matrix = Array.from({ length: n }, () => Array(n).fill(0));
 
 // //   function combi(n, r) {
-// //     if (metrix[n][r]) return metrix[n][r];
+// //     if (matrix[n][r]) return matrix[n][r];
 // //     if (r === 0 || n === r) return 1;
-// //     return (metrix[n][r] = combi(n - 1, r - 1) + combi(n - 1, r));
+// //     return (matrix[n][r] = combi(n - 1, r - 1) + combi(n - 1, r));
 // //   }
 // //   for (let i = 0; i < n; i++) {
 // //     b[i] = combi(n - 1, i);
@@ -44,12 +44,12 @@
 //   let answer;
 
 //   const b = [];
-//   const metrix = Array.from({ length: n }, () => Array(n).fill(0));
+//   const matrix = Array.from({ length: n }, () => Array(n).fill(0));
 
 //   function combi(n, r) {
-//     if (metrix[n][r]) return metrix[n][r];
+//     if (matrix[n][r]) return matrix[n][r];
 //     if (n === r || r === 0) return 1;
-//     return (metrix[n][r] = combi(n - 1, r - 1) + combi(n - 1, r));
+//     return (matrix[n][r] = combi(n - 1, r - 1) + combi(n - 1, r));
 //   }
 //   for (let i = 0; i < n; i++) {
 //     b[i] = combi(n - 1, i);
@@ -85,13 +85,13 @@
 function solution(n, f) {
   let answer;
 
-  const metrix = Array.from({ length: n }, () => Array(n).fill(0));
+  const matrix = Array.from({ length: n }, () => Array(n).fill(0));
   const c = [];
 
   function combi(n, r) {
-    if (metrix[n][r]) return metrix[n][r];
+    if (matrix[n][r]) return matrix[n][r];
     if (n === r || r === 0) return 1;
-    return (metrix[n][r] = combi(n - 1, r - 1) + combi(n - 1, r));
+    return (matrix[n][r] = combi(n - 1, r - 1) + combi(n - 1, r));
   }
   for (let i = 0; i < n; i++) {
     c[i] = combi(n - 1, i);
