@@ -11,5 +11,6 @@ function solution(n, r) {
   return DFS(n, r);
 }
 
+console.log(solution(3, 2));
 console.log(solution(5, 3));
 console.log(solution(33, 19));
