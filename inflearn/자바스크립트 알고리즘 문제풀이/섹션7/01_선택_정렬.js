@@ -1,10 +1,22 @@
+// function solution(arr) {
+//   for (let i = 0; i < arr.length; i++) {
+//     let minIndex = i;
+//     for (let j = i + 1; j < arr.length; j++) {
+//       if (arr[minIndex] > arr[j]) minIndex = j;
+//     }
+//     [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
+//   }
+
+//   return arr;
+// }
+
 function solution(arr) {
   for (let i = 0; i < arr.length; i++) {
-    let minIndex = i;
-    for (let j = i + 1; j < arr.length; j++) {
-      if (arr[minIndex] > arr[j]) minIndex = j;
+    let idx = i;
+    for (let j = i; j < arr.length; j++) {
+      if (arr[idx] > arr[j]) idx = j;
     }
-    [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
+    [arr[i], arr[idx]] = [arr[idx], arr[i]];
   }
 
   return arr;

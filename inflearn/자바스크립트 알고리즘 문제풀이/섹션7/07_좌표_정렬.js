@@ -1,9 +1,16 @@
+// function solution(arr) {
+//   return arr.sort((a, b) => {
+//     const [aX, aY] = a;
+//     const [bX, bY] = b;
+//     if (aX === bX) return aY - bY;
+//     return aX - bX;
+//   });
+// }
+
 function solution(arr) {
   return arr.sort((a, b) => {
-    const [aX, aY] = a;
-    const [bX, bY] = b;
-    if (aX === bX) return aY - bY;
-    return aX - bX;
+    if (a[0] !== b[0]) return a[0] - b[0];
+    return a[1] - b[1];
   });
 }
 
