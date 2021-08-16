@@ -1,23 +1,37 @@
+// // function solution(str) {
+// //   let answer = "";
+// //   const stack = [];
+
+// //   for (let s of str) {
+// //     if (s === "(") stack.push([]);
+// //     else if (s === ")") stack.pop();
+// //     else if (stack.length) stack[stack.length - 1].push(s);
+// //     else answer += s;
+// //   }
+
+// //   return answer;
+// // }
+
 // function solution(str) {
-//   let answer = "";
 //   const stack = [];
 
 //   for (let s of str) {
-//     if (s === "(") stack.push([]);
-//     else if (s === ")") stack.pop();
-//     else if (stack.length) stack[stack.length - 1].push(s);
-//     else answer += s;
+//     if (s === ")") while (stack.pop() !== "(");
+//     else stack.push(s);
 //   }
 
-//   return answer;
+//   return stack.join("");
 // }
 
 function solution(str) {
   const stack = [];
 
   for (let s of str) {
-    if (s === ")") while (stack.pop() !== "(");
-    else stack.push(s);
+    if (s !== ")") stack.push(s);
+    else {
+      while (stack[stack.length - 1] !== "(") stack.pop();
+      stack.pop();
+    }
   }
 
   return stack.join("");
