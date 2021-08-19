@@ -1,25 +1,21 @@
 // https://programmers.co.kr/learn/courses/30/lessons/12913
-// 풀이 중
 
 function solution(arr) {
-  let answer = 0;
+  for (let i = 1; i < arr.length; i++) {
+    const max = Math.max(...arr[i - 1]);
+    const idx = arr[i - 1].indexOf(max);
 
-  let tmp;
-  for (let i = 0; i < arr.length; i++) {
-    let max = 0;
-    let idx = -1;
     for (let j = 0; j < arr[0].length; j++) {
-      if (j === tmp) continue;
-      if (arr[i][j] >= max) {
-        max = arr[i][j];
-        if (j !== tmp) idx = j;
+      if (idx !== j) arr[i][j] += max;
+      else {
+        const _arr = arr[i - 1].slice();
+        _arr.splice(idx, 1);
+        arr[i][j] += Math.max(..._arr);
       }
     }
-    tmp = idx;
-    answer += max;
   }
 
-  return answer;
+  return Math.max(...arr[arr.length - 1]);
 }
 
 console.log(

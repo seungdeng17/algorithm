@@ -1,5 +1,20 @@
+// // function solution(arr) {
+// //   const dy = Array.from({ length: arr.length }, () => 0);
+
+// //   for (let i = 0; i < arr.length; i++) {
+// //     const curr = arr[i];
+// //     let len = 0;
+// //     for (let j = i - 1; j >= 0; j--) {
+// //       if (curr > arr[j] && dy[j] > len) len = dy[j];
+// //     }
+// //     dy[i] = ++len;
+// //   }
+
+// //   return Math.max(...dy);
+// // }
+
 // function solution(arr) {
-//   const dy = Array.from({ length: arr.length }, () => 0);
+//   const dy = [];
 
 //   for (let i = 0; i < arr.length; i++) {
 //     const curr = arr[i];
@@ -10,22 +25,23 @@
 //     dy[i] = ++len;
 //   }
 
+//   console.log(dy);
 //   return Math.max(...dy);
 // }
 
 function solution(arr) {
-  const dy = [];
+  const dy = Array.from({ length: arr.length }, () => 0);
+  dy[0] = 1;
 
-  for (let i = 0; i < arr.length; i++) {
+  for (let i = 1; i < arr.length; i++) {
     const curr = arr[i];
-    let len = 0;
+    let max = 0;
     for (let j = i - 1; j >= 0; j--) {
-      if (curr > arr[j] && dy[j] > len) len = dy[j];
+      if (curr > arr[j] && dy[j] > max) max = dy[j];
     }
-    dy[i] = ++len;
+    dy[i] = ++max;
   }
 
-  console.log(dy);
   return Math.max(...dy);
 }
 
