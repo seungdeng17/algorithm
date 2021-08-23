@@ -21,19 +21,19 @@ function solution(n, words) {
   return answer;
 }
 
-// console.log(
-//   solution(3, [
-//     "tank",
-//     "kick",
-//     "know",
-//     "wheel",
-//     "land",
-//     "dream",
-//     "mother",
-//     "robot",
-//     "tank",
-//   ])
-// );
+console.log(
+  solution(3, [
+    "tank",
+    "kick",
+    "know",
+    "wheel",
+    "land",
+    "dream",
+    "mother",
+    "robot",
+    "tank",
+  ])
+);
 console.log(
   solution(2, ["hello", "one", "even", "never", "now", "world", "draw"])
 );
