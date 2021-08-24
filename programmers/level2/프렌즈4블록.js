@@ -23,7 +23,7 @@ function solution(m, n, board) {
       set.add(`${i},${j}`);
       while (queue.length) {
         const [x, y] = queue.shift();
-        if (x >= m - 1 || y >= n - 1 || !isBox([x, y])) continue;
+        if (x >= m - 1 || y >= n - 1 || !isBox(block1, [x, y])) continue;
         tmp.push([x, y]);
         for (let k = 0; k < dx.length; k++) {
           const nx = x + dx[k];
@@ -53,9 +53,8 @@ function solution(m, n, board) {
     }
   }
 
-  function isBox(pos) {
+  function isBox(block, pos) {
     const [x, y] = pos;
-    const block = board[x][y];
     for (let k = 0; k < rdx.length; k++) {
       const nx = x + rdx[k];
       const ny = y + rdy[k];
@@ -102,3 +101,12 @@ console.log(solution(4, 5, ["AAAAA", "AUUUA", "AUUAA", "AAAAA"]));
 console.log(solution(8, 2, ["CC", "BB", "AA", "BB", "BB", "AA", "BB", "CC"]));
 console.log(solution(7, 2, ["AA", "BB", "AA", "BB", "ZZ", "ZZ", "CC"]));
 console.log(solution(7, 2, ["AA", "BB", "ZZ", "ZZ", "ZZ", "ZZ", "CC"]));
+console.log(
+  solution(6, 6, ["TTTANT", "RRFACC", "RRRFCC", "TRRRAA", "TTMMMF", "TMMTTJ"])
+);
+console.log(
+  solution(6, 6, ["OXXOXX", "OXXXXX", "OOXXXX", "OXXOXX", "OXXXXX", "OOXXXX"])
+);
+console.log(solution(4, 5, ["CCBDE", "AAADE", "AAABF", "CCBBF"]));
+console.log(solution(5, 5, ["BCBAA", "BCAAA", "BAAAB", "AAABB", "AACCC"]));
+console.log(solution(5, 5, ["ACAAA", "AACAA", "AAAAA", "AAAAA", "ACCAA"]));
