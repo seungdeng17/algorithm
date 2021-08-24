@@ -1,4 +1,5 @@
 // https://programmers.co.kr/learn/courses/30/lessons/42583
+// 풀이중
 
 function solution(bridge_length, weight, truck_weights) {
   let answer = 0;
@@ -35,7 +36,6 @@ function solution(bridge_length, weight, truck_weights) {
 
     if (currTruck + 1 < truck_weights.length) {
       queue.push(truck_weights[++currTruck]);
-      answer++;
     }
   }
 
