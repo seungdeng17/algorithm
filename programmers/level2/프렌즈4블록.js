@@ -64,8 +64,8 @@ function solution(m, n, board) {
   }
 
   function setBoard() {
-    for (let i = 0; i < board[0].length; i++) {
-      for (let j = board.length - 1; j >= 0; j--) {
+    for (let i = 0; i < n; i++) {
+      for (let j = m - 1; j >= 0; j--) {
         if (board[j][i]) continue;
         let idx = 0;
         for (let k = j - 1; k >= 0; k--) {
@@ -82,23 +82,24 @@ function solution(m, n, board) {
   return answer;
 }
 
-console.log(solution(4, 5, ["CCBDE", "AAADE", "AAABF", "CCBBF"]));
-console.log(
-  solution(6, 6, ["TTTANT", "RRFACC", "RRRFCC", "TRRRAA", "TTMMMF", "TMMTTJ"])
-);
-console.log(solution(7, 2, ["AA", "BB", "AA", "BB", "ZZ", "ZZ", "CC"]));
-console.log(solution(2, 2, ["AA", "AA"]));
-console.log(solution(2, 2, ["AA", "AB"]));
-console.log(solution(3, 2, ["AA", "AA", "AB"]));
-console.log(solution(4, 2, ["CC", "AA", "AA", "CC"]));
-console.log(solution(6, 2, ["DD", "CC", "AA", "AA", "CC", "DD"]));
-console.log(solution(8, 2, ["FF", "AA", "CC", "AA", "AA", "CC", "DD", "FF"]));
-console.log(solution(6, 2, ["AA", "AA", "CC", "AA", "AA", "DD"]));
-console.log(solution(5, 6, ["AAAAAA", "BBAATB", "BBAATB", "JJJTAA", "JJJTAA"]));
-console.log(
-  solution(6, 6, ["AAAABB", "AAABBB", "AAABBA", "ABBAAA", "BBBAAA", "BBAAAA"])
-);
-console.log(solution(3, 3, ["BAA", "AAA", "AAB"]));
-console.log(solution(4, 5, ["AAAAA", "AUUUA", "AUUAA", "AAAAA"]));
-console.log(solution(8, 2, ["CC", "BB", "AA", "BB", "BB", "AA", "BB", "CC"]));
-console.log(solution(7, 2, ["AA", "BB", "AA", "BB", "ZZ", "ZZ", "CC"]));
+// console.log(solution(4, 5, ["CCBDE", "AAADE", "AAABF", "CCBBF"]));
+// console.log(
+//   solution(6, 6, ["TTTANT", "RRFACC", "RRRFCC", "TRRRAA", "TTMMMF", "TMMTTJ"])
+// );
+// console.log(solution(7, 2, ["AA", "BB", "AA", "BB", "ZZ", "ZZ", "CC"]));
+// console.log(solution(2, 2, ["AA", "AA"]));
+// console.log(solution(2, 2, ["AA", "AB"]));
+// console.log(solution(3, 2, ["AA", "AA", "AB"]));
+// console.log(solution(4, 2, ["CC", "AA", "AA", "CC"]));
+// console.log(solution(6, 2, ["DD", "CC", "AA", "AA", "CC", "DD"]));
+// console.log(solution(8, 2, ["FF", "AA", "CC", "AA", "AA", "CC", "DD", "FF"]));
+// console.log(solution(6, 2, ["AA", "AA", "CC", "AA", "AA", "DD"]));
+// console.log(solution(5, 6, ["AAAAAA", "BBAATB", "BBAATB", "JJJTAA", "JJJTAA"]));
+// console.log(
+//   solution(6, 6, ["AAAABB", "AAABBB", "AAABBA", "ABBAAA", "BBBAAA", "BBAAAA"])
+// );
+// console.log(solution(3, 3, ["BAA", "AAA", "AAB"]));
+// console.log(solution(4, 5, ["AAAAA", "AUUUA", "AUUAA", "AAAAA"]));
+// console.log(solution(8, 2, ["CC", "BB", "AA", "BB", "BB", "AA", "BB", "CC"]));
+// console.log(solution(7, 2, ["AA", "BB", "AA", "BB", "ZZ", "ZZ", "CC"]));
+console.log(solution(7, 2, ["AA", "BB", "ZZ", "ZZ", "ZZ", "ZZ", "CC"]));
