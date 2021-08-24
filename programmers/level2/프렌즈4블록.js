@@ -5,8 +5,8 @@ function solution(m, n, board) {
   let answer = 0;
   board = board.map((s) => s.split(""));
 
-  const dx = [0, 1, 1, 1, 0];
-  const dy = [1, 1, 0, -1, -1];
+  const dx = [-1, -1, 0, 1, 1, 1, 0, -1];
+  const dy = [0, 1, 1, 1, 0, -1, -1, -1];
   const rdx = [0, 0, 1, 1];
   const rdy = [0, 1, 1, 0];
   const queue = [];
@@ -20,6 +20,7 @@ function solution(m, n, board) {
 
       const tmp = [];
       queue.push([i, j]);
+      set.add(`${i},${j}`);
       while (queue.length) {
         const [x, y] = queue.shift();
         if (x >= m - 1 || y >= n - 1 || !isBox([x, y])) continue;
