@@ -1,41 +1,27 @@
 // https://programmers.co.kr/learn/courses/30/lessons/42583
-// 풀이중
 
 function solution(bridge_length, weight, truck_weights) {
   let answer = 0;
 
-  const queue = [];
+  const queue = Array.from({ length: bridge_length - 1 }, () => 0);
   let currTruck = 0;
-  queue.push(truck_weights[currTruck]);
+  let sum = truck_weights[currTruck];
+  queue.push(truck_weights[currTruck++]);
   answer++;
   while (queue.length) {
-    if (!queue[0]) {
-      queue.shift();
-      answer++;
-      continue;
-    }
-    for (let i = 1; i < bridge_length; i++) {
-      const total = queue.reduce((a, b) => a + b, 0);
-      if (
-        queue.length < bridge_length &&
-        currTruck + 1 < truck_weights.length &&
-        total + truck_weights[currTruck + 1] <= weight
-      ) {
-        queue.push(truck_weights[++currTruck]);
-        answer++;
-      } else {
-        queue.push(0);
-      }
-    }
+    const curr = queue.shift();
+    sum -= curr;
+    answer++;
 
-    while (true) {
-      if (!queue[0]) break;
-      queue.shift();
-      answer++;
-    }
-
-    if (currTruck + 1 < truck_weights.length) {
-      queue.push(truck_weights[++currTruck]);
+    if (
+      currTruck < truck_weights.length &&
+      sum + truck_weights[currTruck] <= weight
+    ) {
+      queue.push(truck_weights[currTruck]);
+      sum += truck_weights[currTruck];
+      currTruck++;
+    } else {
+      if (currTruck !== truck_weights.length) queue.push(0);
     }
   }
 
