@@ -9,7 +9,7 @@ function selectionSort(arr) {
   }
   return arr;
 }
-console.log(selectionSort([7, 2, 10, 5, 23, 11, 51, 48]));
+console.log(selectionSort([15, 7, 2, 10, 5, 23, 11, 51, 48]));
 
 // 버블정렬 - n^2 n^2 n^2
 function bubbleSort(arr) {
@@ -20,7 +20,7 @@ function bubbleSort(arr) {
   }
   return arr;
 }
-console.log(bubbleSort([7, 2, 10, 5, 23, 11, 51, 48]));
+console.log(bubbleSort([15, 7, 2, 10, 5, 23, 11, 51, 48]));
 
 // 삽입정렬 - n n^2 n^2
 function insertionSort(arr) {
@@ -35,7 +35,25 @@ function insertionSort(arr) {
   }
   return arr;
 }
-console.log(insertionSort([7, 2, 10, 5, 23, 11, 51, 48]));
+console.log(insertionSort([15, 7, 2, 10, 5, 23, 11, 51, 48]));
+
+// 셸정렬 - n n^1.5 n^2
+function shellSort(arr) {
+  for (let n = parseInt(arr.length / 2); n >= 1; n = parseInt(n / 2)) {
+    for (let i = 0; i < arr.length; i += n) {
+      const tmp = arr[i];
+      let j;
+      for (j = i - n; j >= 0; j -= n) {
+        if (arr[j] > tmp) arr[j + n] = arr[j];
+        else break;
+      }
+      arr[j + n] = tmp;
+    }
+  }
+
+  return arr;
+}
+console.log(shellSort([15, 7, 2, 10, 5, 23, 11, 51, 48]));
 
 // 퀵정렬 - nlogn nlogn n^2
 function quickSort(arr) {
@@ -49,7 +67,7 @@ function quickSort(arr) {
   }
   return [...quickSort(left), pivot, ...quickSort(right)];
 }
-console.log(quickSort([7, 2, 10, 5, 23, 11, 51, 48]));
+console.log(quickSort([15, 7, 2, 10, 5, 23, 11, 51, 48]));
 
 // 병합정렬 - nlogn nlogn nlong
 function mergeSort(arr) {
@@ -69,4 +87,4 @@ function merge(left, right) {
   while (right.length) tmp.push(right.shift());
   return tmp;
 }
-console.log(mergeSort([7, 2, 10, 5, 23, 11, 51, 48]));
+console.log(mergeSort([15, 7, 2, 10, 5, 23, 11, 51, 48]));
