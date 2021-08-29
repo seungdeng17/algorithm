@@ -88,3 +88,27 @@ function merge(left, right) {
   return tmp;
 }
 console.log(mergeSort([15, 7, 2, 10, 5, 23, 11, 51, 48]));
+
+// 힙정렬 - nlogn nlogn n^2
+function heapSort(arr) {
+  for (let i = arr.length - 1; i >= 0; i--) {
+    arr = heapify(arr, i);
+    if (arr[0] > arr[i]) [arr[0], arr[i]] = [arr[i], arr[0]];
+  }
+  return arr;
+}
+function heapify(arr, lastIdx) {
+  let idx = parseInt(lastIdx / 2) - 1;
+  while (idx >= 0) {
+    const left = arr[idx * 2 + 1];
+    const right = arr[idx * 2 + 2];
+    if (left >= right && left > arr[idx]) {
+      [arr[idx], arr[idx * 2 + 1]] = [left, arr[idx]];
+    } else if (right > left && right > arr[idx]) {
+      [arr[idx], arr[idx * 2 + 2]] = [right, arr[idx]];
+    }
+    idx--;
+  }
+  return arr;
+}
+console.log(heapSort([15, 7, 2, 10, 5, 23, 11, 51, 48]));
