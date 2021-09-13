@@ -6,7 +6,7 @@ function solution(orders, course) {
     const str = order.split("").sort().join("");
     for (const max of course) {
       tmpArr = [];
-      getCombination(0, 0, str, max);
+      getCombination(0, 0, str, max); // 모든 조합 구하기
     }
   }
 
@@ -27,7 +27,7 @@ function solution(orders, course) {
   let tmpCnt = 0;
   return [...map.entries()]
     .sort((a, b) => {
-      if (a[0].length === b[0].length) return b[1] - a[1];
+      if (a[0].length === b[0].length) return b[1] - a[1]; // 높은 카운트가 앞으로 오도록 정렬
       return a[0].length - b[0].length;
     })
     .filter((e) => {
