@@ -7,7 +7,6 @@ function solution(s) {
 
   function compress(r) {
     let str = "";
-
     let currS = s.substr(0, r);
     let currCnt = 1;
     for (let i = r; i < s.length; i += r) {
@@ -20,9 +19,7 @@ function solution(s) {
         currCnt = 1;
       }
     }
-    if (currCnt > 1) str += String(currCnt) + currS;
-    else str += currS;
-
+    str += currCnt > 1 ? String(currCnt) + currS : currS;
     return str.length;
   }
 
