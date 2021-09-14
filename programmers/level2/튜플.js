@@ -2,13 +2,14 @@
 
 function solution(s) {
   return s
-    .match(/\{[\d|\,]+\}/g)
+    .match(/\{[\d|\,]+\}/g) // 중괄호 단위로 분리
     .map((s) => s.replace(/\{|\}/g, "").split(","))
-    .sort((a, b) => a.length - b.length)
+    .sort((a, b) => a.length - b.length) // 원소 개수가 낮은 순으로 정렬
     .reduce((acc, tuple) => {
       for (const t of tuple) {
         if (acc.includes(+t)) continue;
-        acc.push(+t);
+        acc.push(+t); // 자리수에 해당하는 값 푸시
+        break;
       }
       return acc;
     }, []);
