@@ -12,7 +12,7 @@ function solution(numbers, target) {
     ch[L] = 0;
     DFS(L + 1);
   }
-  DFS(0, 0);
+  DFS(0);
 
   for (const p of tmp) {
     let sum = 0;
