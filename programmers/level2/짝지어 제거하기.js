@@ -1,13 +1,10 @@
 // https://programmers.co.kr/learn/courses/30/lessons/12973
-// 풀이중
 
 function solution(s) {
-  const sArr = s.split("");
   const stack = [];
-  while (sArr.length) {
-    const s = sArr.shift();
-    if (stack[stack.length - 1] === s) stack.pop();
-    else stack.push(s);
+  for (let i = 0; i < s.length; i++) {
+    if (stack[stack.length - 1] === s[i]) stack.pop();
+    else stack.push(s[i]);
   }
   return +!stack.length;
 }
