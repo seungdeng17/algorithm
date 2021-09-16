@@ -1,47 +1,22 @@
 // https://programmers.co.kr/learn/courses/30/lessons/17677
 
 function solution(str1, str2) {
-  const arr1 = decomposer(str1); // 문자열 분해
-  const arr2 = decomposer(str2);
-  const intersectionCnt = getIntersectionCnt(arr1, arr2); // 자카드 교집합 카운트
-  const unionCnt = getUnionCnt(arr1, arr2); // 자카드 합집합 카운트
+  const map1 = getCntMap(decomposer(str1.toLowerCase()));
+  const map2 = getCntMap(decomposer(str2.toLowerCase()));
+  const [intersectionCnt, unionCnt] = getCnt(map1, map2);
 
   if (!unionCnt) return 65536;
   return Math.floor((intersectionCnt / unionCnt) * 65536);
 }
 
 function decomposer(str) {
-  const arr = [];
+  const arr = []; // 문자열 분해
   for (let i = 0; i < str.length - 1; i++) {
     const s = str.substr(i, 2);
     if (s.match(/[^a-zA-Z]/)) continue;
-    arr.push(s.toLowerCase());
+    arr.push(s);
   }
   return arr;
-}
-
-function getIntersectionCnt(arr1, arr2) {
-  let cnt = 0;
-  const map1 = getCntMap(arr1);
-  const map2 = getCntMap(arr2);
-  map1.forEach((value, key) => {
-    if (!map2.has(key)) return;
-    cnt += Math.min(value, map2.get(key));
-  });
-  return cnt;
-}
-
-function getUnionCnt(arr1, arr2) {
-  const map = new Map();
-  const map1 = getCntMap(arr1);
-  const map2 = getCntMap(arr2);
-  for (const m of [map1, map2]) {
-    m.forEach((value, key) => {
-      if (!map.has(key)) map.set(key, value);
-      else if (value > map.get(key)) map.set(key, value);
-    });
-  }
-  return [...map.values()].reduce((a, b) => a + b, 0);
 }
 
 function getCntMap(arr) {
@@ -51,6 +26,21 @@ function getCntMap(arr) {
     else map.set(s, map.get(s) + 1);
   }
   return map;
+}
+
+function getCnt(map1, map2) {
+  let intersectionCnt = 0; // 자카드 교집합 카운트
+  let unionCnt = 0; // 자카드 합집합 카운트
+
+  map1.forEach((value, key) => {
+    if (!map2.has(key)) return (unionCnt += value);
+    intersectionCnt += Math.min(value, map2.get(key));
+  });
+  map2.forEach((value, key) => {
+    unionCnt += map1.has(key) ? Math.max(value, map1.get(key)) : value;
+  });
+
+  return [intersectionCnt, unionCnt];
 }
 
 console.log(solution("FRANCE", "french"));
