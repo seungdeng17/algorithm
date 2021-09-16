@@ -1,10 +1,10 @@
 // https://programmers.co.kr/learn/courses/30/lessons/17677
 
 function solution(str1, str2) {
-  const arr1 = decomposer(str1);
+  const arr1 = decomposer(str1); // 문자열 분해
   const arr2 = decomposer(str2);
-  const intersectionCnt = getIntersectionCnt(arr1, arr2);
-  const unionCnt = getUnionCnt(arr1, arr2);
+  const intersectionCnt = getIntersectionCnt(arr1, arr2); // 자카드 교집합 카운트
+  const unionCnt = getUnionCnt(arr1, arr2); // 자카드 합집합 카운트
 
   if (!unionCnt) return 65536;
   return Math.floor((intersectionCnt / unionCnt) * 65536);
