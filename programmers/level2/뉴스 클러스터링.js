@@ -35,7 +35,7 @@ function getUnionCnt(arr1, arr2) {
   const map = new Map();
   const map1 = getCntMap(arr1);
   const map2 = getCntMap(arr2);
-  for (let m of [map1, map2]) {
+  for (const m of [map1, map2]) {
     m.forEach((value, key) => {
       if (!map.has(key)) map.set(key, value);
       else if (value > map.get(key)) map.set(key, value);
