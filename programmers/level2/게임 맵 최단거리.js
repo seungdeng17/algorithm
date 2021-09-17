@@ -1,33 +1,31 @@
 // https://programmers.co.kr/learn/courses/30/lessons/1844
-// 풀이중
 
 function solution(arr) {
-  let answer = -1;
+  const col = arr.length - 1;
+  const row = arr[0].length - 1;
+  arr[col][row] = -1;
 
   const dx = [-1, 0, 1, 0];
   const dy = [0, 1, 0, -1];
 
-  function DFS(x, y, cnt) {
-    if (answer !== -1 && cnt >= answer) return;
-    if (x === arr.length - 1 && y === arr[0].length - 1) {
-      if (answer === -1) answer = cnt;
-      else answer = Math.min(answer, cnt);
-      return;
-    }
-
+  const queue = [];
+  queue.push([0, 0]);
+  while (queue.length) {
+    const [x, y] = queue.shift();
+    const cnt = arr[x][y];
+    if (x === col && y === row) return arr[col][row];
     for (let k = 0; k < dx.length; k++) {
       const nx = x + dx[k];
       const ny = y + dy[k];
       if (nx < 0 || ny < 0 || nx >= arr.length || ny >= arr[0].length) continue;
-      if (!arr[nx][ny]) continue;
-      arr[nx][ny] = 0;
-      DFS(nx, ny, cnt + 1);
-      arr[nx][ny] = 1;
+      if (!arr[nx][ny] || arr[nx][ny] > 1) continue;
+      arr[nx][ny] = cnt + 1;
+      queue.push([nx, ny]);
     }
+    arr[x][y] = 0;
   }
-  DFS(0, 0, 1);
 
-  return answer;
+  return -1;
 }
 
 console.log(
