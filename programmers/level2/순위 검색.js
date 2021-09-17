@@ -1,84 +1,60 @@
 // https://programmers.co.kr/learn/courses/30/lessons/72412
-// 풀이중
-
-// function solution(info, query) {
-//   const answer = [];
-
-//   query.forEach((cmd, idx) => {
-//     let cnt = 0;
-//     const score = +cmd.match(/([\d]+)$/)[0];
-//     cmd = cmd.replace(score, "").trim();
-//     const tmp = cmd.split(" and ");
-
-//     const ch = Array.from({ length: info.length }, () => 1);
-//     for (let s of tmp) {
-//       if (s === "-") continue;
-//       for (let i = 0; i < info.length; i++) {
-//         if (!ch[i]) continue;
-//         if (!info[i].includes(s)) {
-//           ch[i] = 0;
-//           continue;
-//         }
-//       }
-//     }
-//     for (let i = 0; i < info.length; i++) {
-//       if (!ch[i]) continue;
-//       if (+info[i].match(/([\d]+)$/)[0] < score) ch[i] = 0;
-//     }
-//     for (let c of ch) if (c) cnt++;
-
-//     answer[idx] = cnt;
-//   });
-
-//   return answer;
-// }
 
 function solution(info, query) {
   const answer = [];
-
   const map = new Map();
-  const subset = getSubset(4);
-  for (let data of info) {
-    const score = +data.match(/([\d]+)$/)[0];
-    data = data.replace(score, "").trim();
-    const tmp = data.split(" ");
-    for (let set of subset) {
-      const _tmp = tmp.slice();
-      for (let i = 0; i < set.length; i++) _tmp[set[i]] = "-";
-      const str = _tmp.join("");
-      if (map.has(str)) map.get(str).push(score);
-      else map.set(str, [score]);
-    }
+
+  for (let i = 0; i < info.length; i++) {
+    const data = info[i].split(" ");
+    const score = +data.pop();
+    addMapData(map, data.join(""), score);
+    for (let m = 1; m <= 4; m++) combination(0, 0, m, data, score);
+  }
+
+  for (const [key, value] of map) {
+    value.sort((a, b) => a - b);
+    map.set(key, value);
   }
 
   for (let i = 0; i < query.length; i++) {
-    const score = +query[i].match(/([\d]+)$/)[0];
-    const _query = query[i].replace(score, "").replace(/and|\s/g, "");
-    if (!map.has(_query)) {
+    const data = query[i].replace(/and /g, "").split(" ");
+    const score = +data.pop();
+    const q = data.join("");
+    if (!map.has(q)) {
       answer[i] = 0;
       continue;
     }
-    answer[i] = map.get(_query).filter((n) => n >= score).length;
+    const arr = map.get(q);
+    let lt = 0;
+    let rt = arr.length - 1;
+    while (lt <= rt) {
+      const mid = parseInt((lt + rt) / 2);
+      if (arr[mid] < score) lt = mid + 1;
+      else rt = mid - 1;
+    }
+    answer[i] = arr.length - lt;
+  }
+
+  function combination(L, s, m, data, score) {
+    if (L === m) {
+      addMapData(map, data.join(""), score);
+      return;
+    }
+
+    for (let i = s; i < data.length; i++) {
+      const tmp = data[i];
+      data[i] = "-";
+      combination(L + 1, i + 1, m, data, score);
+      data[i] = tmp;
+    }
   }
 
   return answer;
 }
 
-function getSubset(n) {
-  const subset = [];
-  const tmp = [];
-  function DFS(L) {
-    if (L === n) {
-      subset.push([...tmp]);
-      return;
-    }
-    tmp.push(L);
-    DFS(L + 1);
-    tmp.pop();
-    DFS(L + 1);
-  }
-  DFS(0);
-  return subset;
+function addMapData(map, key, value) {
+  if (!map.has(key)) map.set(key, [value]);
+  else map.get(key).push(value);
 }
 
 console.log(
