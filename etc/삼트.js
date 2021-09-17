@@ -1,6 +1,3 @@
-// 풀이중
-// todo. 포지션 체크 필요 (떠있는 경우 패스)
-
 function solution(block, board) {
   let answer = 0;
 
