@@ -1,5 +1,4 @@
 // https://programmers.co.kr/learn/courses/30/lessons/42890
-// 풀이중
 
 function solution(relation) {
   const answer = [];
@@ -7,7 +6,10 @@ function solution(relation) {
 
   const totalSubset = getSubset(relation[0].length);
   for (const subset of totalSubset) {
-    if (answer.some((k) => subset.join("").includes(k))) continue;
+    const flag = answer.some(
+      (key) => subset.filter((s) => key.includes(s)).length === key.length
+    );
+    if (flag) continue;
 
     const set = new Set();
     for (const data of relation) {
@@ -15,7 +17,7 @@ function solution(relation) {
       for (const idx of subset) tmp += data[idx];
       set.add(tmp);
     }
-    if (set.size === len) answer.push(subset.join(""));
+    if (set.size === len) answer.push(subset);
   }
 
   return answer.length;
