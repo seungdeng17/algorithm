@@ -1,4 +1,4 @@
-//https://programmers.co.kr/learn/courses/30/lessons/84512
+// https://programmers.co.kr/learn/courses/30/lessons/84512
 
 function solution(word) {
   const w = ["A", "E", "I", "O", "U"];
