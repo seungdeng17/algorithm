@@ -16,14 +16,14 @@ function solution(grid) {
     for (let j = 0; j < grid[0].length; j++) {
       for (let d = 0; d < dx.length; d++) {
         if (ch[i][j][d]) continue;
-        const cnt = DFS(i, j, d, 0);
-        if (cnt) answer.push(cnt);
+        const { x, y, cnt } = DFS(i, j, d, 0);
+        if (cnt && i === x && y === j) answer.push(cnt);
       }
     }
   }
 
   function DFS(x, y, d, cnt) {
-    if (ch[x][y][d]) return cnt;
+    if (ch[x][y][d]) return { x, y, cnt };
     ch[x][y][d] = 1;
 
     let nx = x + dx[d];
