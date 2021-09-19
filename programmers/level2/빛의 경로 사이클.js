@@ -44,22 +44,8 @@ function getNextDir(b, dir) {
   if (b === "S") return dir;
 
   let d;
-  if (b === "L") {
-    d = {
-      0: 2,
-      1: 3,
-      2: 1,
-      3: 0,
-    };
-  }
-  if (b === "R") {
-    d = {
-      0: 3,
-      1: 2,
-      2: 0,
-      3: 1,
-    };
-  }
+  if (b === "L") d = [2, 3, 1, 0];
+  if (b === "R") d = [3, 2, 0, 1];
   return d[dir];
 }
 
