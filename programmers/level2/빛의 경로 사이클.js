@@ -6,10 +6,10 @@ function solution(grid) {
   const dx = [-1, 1, 0, 0];
   const dy = [0, 0, -1, 1];
 
-  const ch = Array.from({ length: grid.length }, () => []);
-  for (let i = 0; i < grid.length; i++) {
-    for (let j = 0; j < grid[0].length; j++) ch[i].push([0, 0, 0, 0]);
-  }
+  const ch = Array.from({ length: grid.length }, () => []).map((c) => {
+    for (let i = 0; i < grid[0].length; i++) c.push([0, 0, 0, 0]);
+    return c;
+  });
 
   for (let i = 0; i < grid.length; i++) {
     for (let j = 0; j < grid[0].length; j++) {
@@ -23,7 +23,6 @@ function solution(grid) {
 
   function checker(x, y, d) {
     let cnt = 0;
-
     while (true) {
       if (ch[x][y][d]) break;
       ch[x][y][d] = 1;
@@ -35,10 +34,8 @@ function solution(grid) {
       if (x >= grid.length) x = 0;
       if (y < 0) y = grid[0].length - 1;
       if (y >= grid[0].length) y = 0;
-
       d = getNextDir(grid[x][y], d);
     }
-
     return cnt;
   }
 
@@ -47,11 +44,8 @@ function solution(grid) {
 
 function getNextDir(block, dir) {
   if (block === "S") return dir;
-
-  let nd;
-  if (block === "L") nd = [2, 3, 1, 0];
-  if (block === "R") nd = [3, 2, 0, 1];
-  return nd[dir];
+  if (block === "L") return [2, 3, 1, 0][dir];
+  if (block === "R") return [3, 2, 0, 1][dir];
 }
 
 // function checker(x, y, d) {
