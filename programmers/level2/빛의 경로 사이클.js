@@ -1,5 +1,4 @@
 // https://programmers.co.kr/learn/courses/30/lessons/86052
-// 풀이중
 
 function solution(grid) {
   const answer = [];
@@ -16,25 +15,31 @@ function solution(grid) {
     for (let j = 0; j < grid[0].length; j++) {
       for (let d = 0; d < dx.length; d++) {
         if (ch[i][j][d]) continue;
-        const { x, y, cnt } = DFS(i, j, d, 0);
-        if (cnt && i === x && y === j) answer.push(cnt);
+        const cnt = checker(i, j, d);
+        if (cnt) answer.push(cnt);
       }
     }
   }
 
-  function DFS(x, y, d, cnt) {
-    if (ch[x][y][d]) return { x, y, cnt };
-    ch[x][y][d] = 1;
+  function checker(x, y, d) {
+    let cnt = 0;
 
-    let nx = x + dx[d];
-    let ny = y + dy[d];
-    if (nx < 0) nx = grid.length - 1;
-    if (nx >= grid.length) nx = 0;
-    if (ny < 0) ny = grid[0].length - 1;
-    if (ny >= grid[0].length) ny = 0;
+    while (true) {
+      if (ch[x][y][d]) break;
+      ch[x][y][d] = 1;
+      cnt++;
 
-    const nd = getNextDir(grid[nx][ny], d);
-    return DFS(nx, ny, nd, cnt + 1);
+      x = x + dx[d];
+      y = y + dy[d];
+      if (x < 0) x = grid.length - 1;
+      if (x >= grid.length) x = 0;
+      if (y < 0) y = grid[0].length - 1;
+      if (y >= grid[0].length) y = 0;
+
+      d = getNextDir(grid[x][y], d);
+    }
+
+    return cnt;
   }
 
   return answer.sort((a, b) => a - b);
@@ -48,6 +53,29 @@ function getNextDir(block, dir) {
   if (block === "R") nd = [3, 2, 0, 1];
   return nd[dir];
 }
+
+// function checker(x, y, d) {
+//   let cnt = 0;
+
+//   function DFS(x, y, d) {
+//     if (ch[x][y][d]) return;
+//     ch[x][y][d] = 1;
+//     cnt++;
+
+//     x = x + dx[d];
+//     y = y + dy[d];
+//     if (x < 0) x = grid.length - 1;
+//     if (x >= grid.length) x = 0;
+//     if (y < 0) y = grid[0].length - 1;
+//     if (y >= grid[0].length) y = 0;
+
+//     d = getNextDir(grid[x][y], d);
+//     DFS(x, y, d);
+//   }
+//   DFS(x, y, d);
+
+//   return cnt;
+// }
 
 console.log(solution(["SL", "LR"]));
 console.log(solution(["S"]));
