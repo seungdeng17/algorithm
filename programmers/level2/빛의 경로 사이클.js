@@ -40,13 +40,13 @@ function solution(grid) {
   return answer.sort((a, b) => a - b);
 }
 
-function getNextDir(b, dir) {
-  if (b === "S") return dir;
+function getNextDir(block, dir) {
+  if (block === "S") return dir;
 
-  let d;
-  if (b === "L") d = [2, 3, 1, 0];
-  if (b === "R") d = [3, 2, 0, 1];
-  return d[dir];
+  let nd;
+  if (block === "L") nd = [2, 3, 1, 0];
+  if (block === "R") nd = [3, 2, 0, 1];
+  return nd[dir];
 }
 
 console.log(solution(["SL", "LR"]));
