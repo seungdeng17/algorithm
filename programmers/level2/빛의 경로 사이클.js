@@ -11,11 +11,11 @@ function solution(grid) {
     return c;
   });
 
-  for (let i = 0; i < grid.length; i++) {
-    for (let j = 0; j < grid[0].length; j++) {
+  for (let x = 0; x < grid.length; x++) {
+    for (let y = 0; y < grid[0].length; y++) {
       for (let d = 0; d < dx.length; d++) {
-        if (ch[i][j][d]) continue;
-        const cnt = checker(i, j, d);
+        if (ch[x][y][d]) continue;
+        const cnt = checker(x, y, d);
         if (cnt) answer.push(cnt);
       }
     }
