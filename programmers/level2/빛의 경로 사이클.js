@@ -17,13 +17,13 @@ function solution(grid) {
     for (let y = 0; y < grid[0].length; y++) {
       for (let d = 0; d < dx.length; d++) {
         if (ch[x][y][d]) continue;
-        const cnt = checker(x, y, d);
+        const cnt = getCycleCnt(x, y, d); // 사이클 카운트 구하기
         if (cnt) answer.push(cnt);
       }
     }
   }
 
-  function checker(x, y, d) {
+  function getCycleCnt(x, y, d) {
     let cnt = 0;
     while (true) {
       if (ch[x][y][d]) break; // 이미 방문한 방향일 때 break
