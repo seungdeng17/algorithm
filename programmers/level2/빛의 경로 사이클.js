@@ -48,29 +48,6 @@ function getNextDir(block, dir) {
   if (block === "R") return [3, 2, 0, 1][dir];
 }
 
-// function checker(x, y, d) {
-//   let cnt = 0;
-
-//   function DFS(x, y, d) {
-//     if (ch[x][y][d]) return;
-//     ch[x][y][d] = 1;
-//     cnt++;
-
-//     x = x + dx[d];
-//     y = y + dy[d];
-//     if (x < 0) x = grid.length - 1;
-//     if (x >= grid.length) x = 0;
-//     if (y < 0) y = grid[0].length - 1;
-//     if (y >= grid[0].length) y = 0;
-
-//     d = getNextDir(grid[x][y], d);
-//     DFS(x, y, d);
-//   }
-//   DFS(x, y, d);
-
-//   return cnt;
-// }
-
 console.log(solution(["SL", "LR"]));
 console.log(solution(["S"]));
 console.log(solution(["R", "R"]));
