@@ -1,17 +1,3 @@
-const input = [];
-const readline = require("readline");
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
-rl.on("line", function (line) {
-  input.push(line);
-}).on("close", function () {
-  console.log(solution(input));
-  process.exit();
-});
-
 function solution(input) {
   const result = [];
   let [cnt, eT, bT] = input;
@@ -26,3 +12,18 @@ function solution(input) {
 
   return Math.max(...result);
 }
+
+// readline
+const input = [];
+const readline = require("readline");
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+
+rl.on("line", function (line) {
+  input.push(line);
+}).on("close", function () {
+  console.log(solution(input));
+  process.exit();
+});
